@@ -32,12 +32,17 @@ int main() {
 
     auto end = std::chrono::high_resolution_clock::now();
 
-    auto duration = std::chrono::duration_cast<std::chrono::seconds>(end - start).count();
+    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
 
     // Print the duration
-    std::cout << "Execution time (s): " << duration << " seconds" << std::endl;
+    std::cout << "Execution time (s): " << duration << " milliseconds" << std::endl;
     std::cout << row_squared_norms.head(10) << std::endl;
 
+
+    double sum = row_squared_norms.sum();
+
+    // Output the sum
+    std::cout << "Sum of all values: " << sum << std::endl;
 
     
 
