@@ -2,12 +2,15 @@
 #include <Eigen/Core>
 #include <Eigen/Dense>
 #include <chrono>
+#include <random>
 
 int main() {
     int rows = 10000000;
     int columns = 100;
 
     // Generate a random matrix
+    std::mt19937_64 rng;
+    rng.seed(42);
     Eigen::MatrixXd random_matrix = Eigen::MatrixXd::Random(rows, columns);
 
     auto start = std::chrono::high_resolution_clock::now();
@@ -23,7 +26,7 @@ int main() {
         Eigen::MatrixXd batch = random_matrix.block(i, 0, end_row - i, columns);
         Eigen::VectorXd norms = batch.rowwise().squaredNorm();
 
-        //row_squared_norms.segment(i, end_row - i) = norms;
+        row_squared_norms.segment(i, end_row - i) = norms;
     }
 
 
@@ -33,6 +36,7 @@ int main() {
 
     // Print the duration
     std::cout << "Execution time (s): " << duration << " seconds" << std::endl;
+    std::cout << row_squared_norms.head(10) << std::endl;
 
 
     
