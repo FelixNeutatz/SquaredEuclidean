@@ -51,7 +51,7 @@ int main()
             [](const auto &v) noexcept -> auto
             {
                 return std::accumulate(std::cbegin(v), std::cend(v), Payload{}, [](const auto &acc, const auto &e) noexcept -> auto
-                                       { return acc + e * e; }); // actual work: square and accumulate
+                                       { return acc + std::abs(e) * std::abs(e); }); // actual work: square and accumulate
             });
 
         auto const end{std::chrono::high_resolution_clock::now()};
