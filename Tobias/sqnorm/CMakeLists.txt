@@ -11,6 +11,8 @@ target_compile_options(sqnorm PUBLIC "-pedantic") #
 target_compile_options(sqnorm PUBLIC "-ffast-math") #
 target_compile_options(sqnorm PUBLIC "-march=native") #
 
+target_link_libraries(sqnorm tbb)
+
 
 
 set_property(TARGET sqnorm PROPERTY INTERPROCEDURAL_OPTIMIZATION TRUE)
